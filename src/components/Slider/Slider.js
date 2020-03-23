@@ -25,7 +25,7 @@ const Slider = ({ children, activeSlide }) => {
   };
 
   const contextValue = {
-     onSelectSlide: handleSelect,
+    onSelectSlide: handleSelect,
     elementRef,
     selectedInstance,
   };
