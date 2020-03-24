@@ -1,6 +1,7 @@
 import React, {useContext } from 'react';
 import {TemplateInstanceContext} from '../../contexts/TemplateInstanceContext';
 import './Modal.scss';
+import PlaceHolderImage from './../../PlaceHolder.JPG';
 
 const Modal = () => {
   const {selectedInstance, setSelectedInstance} = useContext(TemplateInstanceContext);
@@ -12,14 +13,16 @@ const Modal = () => {
       <div className="modal-overlay"/>
       <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
         <div className="modal">
-          <div className="modal-header">
-            <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={Deselect}>
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          <div className="">
           <p>
-            {selectedInstance.templateInstanceId}
+            <h1>{selectedInstance.name}</h1>
           </p>
+          <img src={PlaceHolderImage} alt={selectedInstance.name} />
+          <div className="buttons">
+            <button onClick={Deselect}>Go Back</button>
+            <button>Personalize</button>
+          </div>
+          </div>
         </div>
       </div>
     </React.Fragment>
