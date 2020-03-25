@@ -7,7 +7,7 @@ import Wizard from './Wizard/Wizard';
 const Main = () => {
     const {accountTemplates, isLoading, selectedInstance} = useContext(TemplateInstanceContext);
     if (isLoading) return (<div>Loading...</div>);
-    if (accountTemplates && accountTemplates.length > 1) {
+    if (accountTemplates && accountTemplates.length > 0 && accountTemplates[0].templateInstances.length > 1) {
     return (
     <div>
         {accountTemplates.map(at => {
