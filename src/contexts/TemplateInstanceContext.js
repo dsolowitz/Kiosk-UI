@@ -4,7 +4,7 @@ import axios from "axios";
 export const TemplateInstanceContext = createContext();
 
 const TemplateInstanceProvider = (props) => {
-    const [templateInstances, setTemplateInstances] = useState([]);
+    const [accountTemplates, setAccountTemplates] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedInstance, setSelectedInstance] = useState(null);
     useEffect(() => {
@@ -15,23 +15,23 @@ const TemplateInstanceProvider = (props) => {
                     if (props.routeData.templateinstanceid) {
                         //Filter Template Instance to one..
                         const response = await axios.get(`https://api-dev.3ovr3.io/TemplateInstances/byaccountlocationtemplate?accountid=${props.routeData.accountid}&locationid=${props.routeData.locationid}&templateInstanceId=${props.routeData.templateinstanceid}`);
-                        setTemplateInstances(response.data);
+                        setAccountTemplates(response.data);
                     }
                     else if (props.routeData.templateid) {
                         //Filter Template
                         const response = await axios.get(`https://api-dev.3ovr3.io/TemplateInstances/byaccountlocationtemplate?accountid=${props.routeData.accountid}&locationid=${props.routeData.locationid}&templateId=${props.routeData.templateid}`);
-                        setTemplateInstances(response.data);
+                        setAccountTemplates(response.data);
                     }
                     else {
                         //Get all template Instances for account and locations
                         const response = await axios.get(`https://api-dev.3ovr3.io/TemplateInstances/byaccountlocationtemplate?accountid=${props.routeData.accountid}&locationid=${props.routeData.locationid}`);
-                        setTemplateInstances(response.data);
+                        setAccountTemplates(response.data);
                     }
                 }
                 setIsLoading(false);
             } catch (e) {
                 console.log(e);
-                setTemplateInstances([]);
+                setAccountTemplates([]);
                 setIsLoading(false);
             }
         };
@@ -44,7 +44,7 @@ const TemplateInstanceProvider = (props) => {
 
     const contextValue = {
         setSelectedInstance: handleSelectedTemplateInstance,
-        templateInstances,
+        accountTemplates,
         isLoading,
         selectedInstance
     };
