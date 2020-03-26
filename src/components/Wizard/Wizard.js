@@ -1,12 +1,13 @@
 import React from 'react';
+import Template from './Template';
 
 const Wizard = (props) => {
     if (props.location) {
-        return (<div>The wizard for {props.location.state.templateInstance.name}</div>);
+        return <Template wizProps = {props.history.location.state.templateInstance}/>
     }
-    else {
-        return (<div>The wizard for {props.templateInstance.name}</div>);
-    }
+    // else {
+    //     return (<Template wizProps ={props.templateInstance.name}/>);
+    // }
 }
 
 export default Wizard;
