@@ -10,7 +10,17 @@ const ThemeContextProvider = (props) => {
         const fetchTheme = async () => {
             try {
                 //Get out of the database
-                document.documentElement.setAttribute("data-theme", 'X');
+                //document.documentElement.setAttribute("data-theme", 'X');
+                //document.getElementById("CustomTheme").setAttribute("href", "./themes/themex.css")
+
+                const style = document.createElement("link");
+                style.href = "./themes/theme.css";
+                //style.href = "./themes/themex.css";
+                style.rel = "stylesheet";
+                style.async = true;
+
+                document.head.appendChild(style);
+
             } catch (e) {
                 console.log(e);
             }
