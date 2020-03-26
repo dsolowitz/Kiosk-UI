@@ -1,7 +1,11 @@
+
+
+//Default Theme
 body {
   margin: 0;
   padding: 0;
-  background: #2c3e58;
-    font-family: 'Open Sans', sans-serif;
-  color: white;
+  background-color: var(--primaryBackground);
+  font-family: 'Open Sans', sans-serif;
+  color: var(--primaryTextColor);
 }
+

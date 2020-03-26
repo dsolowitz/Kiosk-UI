@@ -1,0 +1,13 @@
+html {
+    --primaryBackground: #2c3e58;
+    --primaryTextColor: white;
+  }
+
+
+  //Organisation X Theme Perhaps we can generate this?
+
+  // dark theme
+html[data-theme="X"] {
+    --primaryBackground: #bb1414;
+    --primaryTextColor: #1b0707;
+}
