@@ -9,16 +9,16 @@ const ThemeContextProvider = (props) => {
       useEffect(() => {
         const fetchTheme = async () => {
             try {
-                //Get out of the database
-                //document.documentElement.setAttribute("data-theme", 'X');
-                //document.getElementById("CustomTheme").setAttribute("href", "./themes/themex.css")
+                // Based on the account id in the context we should switch out to that css file. 
+                // Swap out the random number for the account id guid.
+                var number = Math.floor(Math.random() * Math.floor(3));
 
                 const style = document.createElement("link");
-                style.href = "./themes/theme.css";
-                //style.href = "./themes/themex.css";
+                style.href = "./themes/theme-" + number + ".css";
                 style.rel = "stylesheet";
                 style.async = true;
 
+                console.log(style.href)
                 document.head.appendChild(style);
 
             } catch (e) {
