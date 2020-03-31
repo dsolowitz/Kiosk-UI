@@ -25,7 +25,7 @@ return(
                     text = {data.name}
                     templateStepId = {data.templateInstanceStepsId}
                     message = {this.props.message}
-                    startOver = {() => {this.props.startOver()}}
+                    startOver = {this.props.startOver}
                     key={idx + 1}
                     response = {this.props.response}
                     generatePreview = {this.props.generatePreview}
@@ -38,7 +38,7 @@ return(
                     return <Camera
                     saveImage = {this.props.saveImage}
                     resetCam = {this.props.image}
-                    startOver = {() => {this.props.startOver()}}
+                    startOver = {this.props.startOver}
                     response = {this.props.response}
                     generatePreview = {this.props.generatePreview}
                     key={idx + 1}
@@ -50,7 +50,7 @@ return(
                     savePreview = {this.props.savePreview}
                     myPrev = {this.props.preview}
                     templateStepId = {data.templateStepId}
-                    startOver = {() => {this.props.startOver()}}
+                    startOver = {this.props.startOver}
                     response = {this.props.response}
                     key={idx + 1}
                     getPreview = {this.props.getPrev}
@@ -61,7 +61,7 @@ return(
                 if (data.stepTypeId === "6909319f-2ef4-408e-9db8-913bc54d9466"){
                     return <Review
                     preview = {this.props.preview}
-                    startOver = {() => {this.props.startOver()}}
+                    startOver = {this.props.startOver}
                     data = {data}
                     message = {this.props.message}
                     getPreview = {this.props.getPrev}
@@ -72,7 +72,8 @@ return(
                 />
                 }
                 if (data.stepTypeId === "991e7b88-192e-49c1-961f-ae667e76f4c3"){
-                    return <Print startOver = {() => {this.props.startOver()}}
+                    return <Print startOver = {this.props.startOver}
+
                     key={idx + 1}/>
                 }
             })

@@ -14,7 +14,8 @@ export class Template extends Component {
         templateInstances: [],
         steps : [],
         template: {},
-        response : ''
+        response : '',
+        path: this.props.route
     }
 }
 
@@ -75,9 +76,8 @@ export class Template extends Component {
             response : '',
           
         })  
-        let route = this.props.route
-        console.log(route)
-        return route
+        let path = this.state.path
+        return path
     }
    
   

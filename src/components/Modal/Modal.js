@@ -3,9 +3,10 @@ import {TemplateInstanceContext} from '../../contexts/TemplateInstanceContext';
 import './Modal.scss';
 import PlaceHolderImage from './../../PlaceHolder.JPG';
 import { Redirect } from 'react-router-dom';
+import { Link } from '@material-ui/core';
 
-const Modal = () => {
-  const {selectedInstance, setSelectedInstance, locationId, accountId} = useContext(TemplateInstanceContext);
+const Modal = (props) => {
+  const {selectedInstance, setSelectedInstance, url} = useContext(TemplateInstanceContext);
   const [personalize, setPersonalize] = useState(false);
   const Deselect = () => {
     setSelectedInstance(null);
@@ -19,7 +20,9 @@ const Modal = () => {
     return <Redirect
               to={{
                 pathname: "/wizard",
-                state: { templateInstance: selectedInstance, locationId: locationId, accountId: accountId }
+                state: { templateInstance: selectedInstance,
+                          prevPath : url
+                        }
               }}
             />
   }
