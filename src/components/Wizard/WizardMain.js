@@ -49,7 +49,7 @@ return(
                     myImage = {this.props.image}
                     savePreview = {this.props.savePreview}
                     myPrev = {this.props.preview}
-                    templateStepId = {data.templateStepId}
+                    templateStepId = {data.templateInstanceStepsId}
                     startOver = {this.props.startOver}
                     response = {this.props.response}
                     key={idx + 1}

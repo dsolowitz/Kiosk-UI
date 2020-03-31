@@ -33,7 +33,7 @@ export class Template extends Component {
            
         this.setState({ 
             preview: prev.img,
-            steps : [...this.state.steps , {templateStepId : stepId , data: prev.img}],
+            steps : [...this.state.steps , {templateInstanceStepId : stepId , data: prev.img}],
         }, () => this.generatePreview())}
             
     }
@@ -41,7 +41,7 @@ export class Template extends Component {
      generatePreview = () => {
         this.setState({
             template : {
-                templateId : this.props.wizProps.templateInstanceId,
+                templateInstanceId : this.props.wizProps.templateInstanceId,
                 steps : [...this.state.steps]
             }
         }, () => this.getPrev())
@@ -49,7 +49,7 @@ export class Template extends Component {
 
      getPrev = () =>{
          if(this.state.templateId !== {}){
-        const url = 'https://api-dev.3ovr3.io/Templates/preview'
+        const url = 'https://api-dev.3ovr3.io/TemplateInstances/preview'
         const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
 
         fetch(proxyUrl + url, {
@@ -85,7 +85,7 @@ export class Template extends Component {
     getStepIdIndex = (arr, id)  => {
 
         for (let i = 0; i < arr.length; i++) {
-          if (arr[i].templateStepId === id) {
+          if (arr[i].templateInstanceStepId === id) {
       
             return i;
           }
@@ -105,7 +105,7 @@ export class Template extends Component {
         if (stepIdIndex === -1) {
             this.setState(prevState => ({
             steps: [...prevState.steps, {
-                templateStepId: stepId,
+                templateInstanceStepId: stepId,
                 data: msg
             }]
             }));
