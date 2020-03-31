@@ -17,7 +17,7 @@ const MainRoute = (props) => {
         return ( 
             <ThemeProvider>
                 <TemplateInstanceProvider routeData={props.match.params}>
-                    <Main routeData={props.match.params} />
+                    <Main />
                 </TemplateInstanceProvider>
             </ThemeProvider>
         );
