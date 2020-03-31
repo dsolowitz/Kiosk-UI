@@ -5,10 +5,10 @@ import Modal from './Modal/Modal';
 import Wizard from './Wizard/Wizard';
 
 const Main = () => {
-    const {accountTemplates, isLoading, selectedInstance} = useContext(TemplateInstanceContext);
+    const {accountTemplates, isLoading, selectedInstance, url} = useContext(TemplateInstanceContext);
     if (isLoading) return (<div>Loading...</div>);
     if (accountTemplates && accountTemplates.length === 1 && accountTemplates[0].templateInstances.length === 1){
-      return (<Wizard templateInstance={accountTemplates[0].templateInstances[0]} />);
+      return (<Wizard templateInstance={accountTemplates[0].templateInstances[0]}  url = {url}/>);
     }
     else if (accountTemplates && accountTemplates.length > 0) {
     return (
@@ -21,7 +21,7 @@ const Main = () => {
             </div>
           );
         })}
-        {selectedInstance &&  <Modal />}
+        {selectedInstance  &&  <Modal url = {url}/>}
     </div>);
     } 
     else {

@@ -5,7 +5,7 @@ import PlaceHolderImage from './../../PlaceHolder.JPG';
 import { Redirect } from 'react-router-dom';
 
 const Modal = () => {
-  const {selectedInstance, setSelectedInstance} = useContext(TemplateInstanceContext);
+  const {selectedInstance, setSelectedInstance, url} = useContext(TemplateInstanceContext);
   const [personalize, setPersonalize] = useState(false);
   const Deselect = () => {
     setSelectedInstance(null);
@@ -19,7 +19,9 @@ const Modal = () => {
     return <Redirect
               to={{
                 pathname: "/wizard",
-                state: { templateInstance: selectedInstance }
+                state: { templateInstance: selectedInstance,
+                          url: url
+                        }
               }}
             />
   }

@@ -7,6 +7,7 @@ const TemplateInstanceProvider = (props) => {
     const [accountTemplates, setAccountTemplates] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [selectedInstance, setSelectedInstance] = useState(null);
+    const url = props.url
     useEffect(() => {
         const fetchTemplateInstances = async () => {
             try {
@@ -46,7 +47,8 @@ const TemplateInstanceProvider = (props) => {
         setSelectedInstance: handleSelectedTemplateInstance,
         accountTemplates,
         isLoading,
-        selectedInstance
+        selectedInstance,
+        url
     };
 
 

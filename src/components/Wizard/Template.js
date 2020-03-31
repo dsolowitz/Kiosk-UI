@@ -7,39 +7,18 @@ export class Template extends Component {
     constructor(props) {
         super(props);
     this.state = {
-       location : {
-        accountId : '27ADCEE8-3263-49F4-AC11-DE1A570A8553',
-        locationId: '49B1A4AB-19A8-41CF-849A-5BC1B7338BCD',
-       },
+        location: {},
         image: null,
         preview: {},
         message : {},
         templateInstances: [],
         steps : [],
-        template: {
-                    },
-        user : true,
+        template: {},
         response : ''
     }
 }
 
   
-
-    // async componentDidMount(){
-    //     const proxyurl = 'https://cors-anywhere.herokuapp.com/';
-    //     const tempUrl = 'https://api-dev.3ovr3.io/TemplateInstances/byaccountlocationtemplate'
-    //     const url = new URL(proxyurl + tempUrl)
-    //     url.search = new URLSearchParams(this.state.location)
-    //     const response = await fetch(url)
-    //     const data = await response.json()
-
-    //     let temps = data
-    //     let instances = []
-    //     for(let x = 0 ; x< temps.length; x++){
-    //         instances.push(...temps[x].templateInstances)
-    //     }
-    //     this.setState({templateInstances: instances})
-    //   }
 
 
     saveImage = (pic) =>{
@@ -61,7 +40,7 @@ export class Template extends Component {
      generatePreview = () => {
         this.setState({
             template : {
-                templateId : this.state.templateId,
+                templateId : this.props.wizProps.templateInstanceId,
                 steps : [...this.state.steps]
             }
         }, () => this.getPrev())
@@ -91,27 +70,17 @@ export class Template extends Component {
             image: null,
             preview: null,
             message: {},
-            cStep: 0,
-            isActive : false,
             steps: [],
-            templateId : '',
             template: {},
-            response : ''
-        })
+            response : '',
+          
+        })  
+        let route = this.props.route
+        console.log(route)
+        return route
     }
-    // chooseSteps = (type) =>{
-        
-    //     for (var i in this.state.templateInstances){
-    //         if(this.state.templateInstances[i].templateInstanceId === type){
-                
-    //             this.setState({activeTemplate : {...this.state.templateInstances[i]}})
-    //             this.setState({templateId : this.state.templateInstances[i].templateInstanceId })
-    //             this.setState({template: {templateId : this.state.templateInstances[i].templateInstanceId }})
-    //         }
-            
-    //     }
-        
-    // }
+   
+  
 
     getStepIdIndex = (arr, id)  => {
 
