@@ -21,7 +21,7 @@ const Main = () => {
             </div>
           );
         })}
-        {selectedInstance  &&  <Modal url = {url}/>}
+        {selectedInstance  &&  <Modal />}
     </div>);
     } 
     else {
