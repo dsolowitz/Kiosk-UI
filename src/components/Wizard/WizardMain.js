@@ -29,7 +29,7 @@ return(
                     key={idx + 1}
                     response = {this.props.response}
                     generatePreview = {this.props.generatePreview}
-
+                    
                 />
                
                 

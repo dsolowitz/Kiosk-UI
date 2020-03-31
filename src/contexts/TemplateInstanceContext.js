@@ -9,6 +9,7 @@ const TemplateInstanceProvider = (props) => {
     const [accountId,setAccountId] = useState(null);
     const [locationId,setLocationId] = useState(null);
     const [selectedInstance, setSelectedInstance] = useState(null);
+    const url = props.url
     useEffect(() => {
         const fetchTemplateInstances = async () => {
             try {
