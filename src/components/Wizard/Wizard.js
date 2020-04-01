@@ -2,12 +2,13 @@ import React from 'react';
 import Template from './Template';
 
 const Wizard = (props) => {
+
     if (props.location) {
-        return <Template wizProps = {props.history.location.state.templateInstance}/>
+        return <Template wizProps = {props.history.location.state.templateInstance} route = {props.location.state.prevPath}/>
     }
-    // else {
-    //     return (<Template wizProps ={props.templateInstance.name}/>);
-    // }
+    else {
+         return <Template accountId={props.accountId} locationId={props.locationId} wizProps={props.templateInstance}/>;
+     }
 }
 
 export default Wizard;

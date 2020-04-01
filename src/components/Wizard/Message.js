@@ -3,8 +3,6 @@ import { TextField } from '@material-ui/core';
 import Navigation from './Navigation'
 import {Swipeable} from 'react-swipeable'
 import Preview from './Preview'
-import { MuiThemeProvider } from '@material-ui/core/styles'
-
 
 
 

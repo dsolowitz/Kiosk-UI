@@ -6,12 +6,17 @@ export const TemplateInstanceContext = createContext();
 const TemplateInstanceProvider = (props) => {
     const [accountTemplates, setAccountTemplates] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [accountId,setAccountId] = useState(null);
+    const [locationId,setLocationId] = useState(null);
     const [selectedInstance, setSelectedInstance] = useState(null);
+    
     useEffect(() => {
         const fetchTemplateInstances = async () => {
             try {
                 setIsLoading(true);
                 if (props.routeData && props.routeData.accountid && props.routeData.locationid) {
+                    setAccountId(props.routeData.accountid);
+                    setLocationId(props.routeData.locationid);
                     if (props.routeData.templateinstanceid) {
                         //Filter Template Instance to one..
                         const response = await axios.get(`https://api-dev.3ovr3.io/TemplateInstances/byaccountlocationtemplate?accountid=${props.routeData.accountid}&locationid=${props.routeData.locationid}&templateInstanceId=${props.routeData.templateinstanceid}`);
@@ -46,7 +51,9 @@ const TemplateInstanceProvider = (props) => {
         setSelectedInstance: handleSelectedTemplateInstance,
         accountTemplates,
         isLoading,
-        selectedInstance
+        selectedInstance,
+        url : props.url
+       
     };
 
 
