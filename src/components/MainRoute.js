@@ -16,7 +16,7 @@ const MainRoute = (props) => {
     if (!showSplashScreen) {
         return (
             <ThemeProvider routeData={props.match.params}>
-                <TemplateInstanceProvider routeData={props.match.params}>
+                <TemplateInstanceProvider routeData={props.match.params} url = {props.match.url}>
                     <Main routeData={props.match.params} />
                 </TemplateInstanceProvider>
             </ThemeProvider>

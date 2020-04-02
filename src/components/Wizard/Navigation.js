@@ -1,27 +1,26 @@
 import React from 'react';
 import RaisedButton from '@material-ui/core/Button';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
+import { Link , Redirect} from "react-router-dom";
 
-const buttonStyles = {
-    height: '100vh',
-    color: "white",
-    fontSize: "2em",
-    backgroundColor: "transparent",
-    border: "0",
-    cursor: "pointer",
-    
-  };
-
-  
-
-  const buttonLeft = { ...buttonStyles, float: "left" };
-  const buttonRight = { ...buttonStyles, float: "right" };
-
+let route = ''
 
 class Navigation extends React.Component {
 
+    state = {
+        redirect: false
+    }
+
+    handleClick = () => {
+        route = this.props.startOver()
+        this.setState({redirect: true});    
+    }
+    
+
     render() {
-       
+        if (this.state.redirect) {
+            return <Redirect push to={route} />;
+          }
         return (
             <div >
             {/* { this.props.currentStep > 1 && 
@@ -32,7 +31,7 @@ class Navigation extends React.Component {
                     <RaisedButton onClick={this.props.nextStep} style = {buttonRight}></RaisedButton>  
                 }   */}
             {   this.props.currentStep > 1 &&
-                    <p ><RaisedButton onClick={() => {this.props.startOver() ; this.props.firstStep() }} style = {{color: 'white'}}><ThreeSixtyIcon />Start Over</RaisedButton></p>
+                    <p> <RaisedButton onClick={this.handleClick} style = {{color: 'white'}}><ThreeSixtyIcon />Start Over</RaisedButton></p>
                  }
           </div>
         )
