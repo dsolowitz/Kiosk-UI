@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { TextField } from '@material-ui/core';
 import Navigation from './Navigation'
 import {Swipeable} from 'react-swipeable'
 import Preview from './Preview'
-
+import {InputGroup, FormControl} from 'react-bootstrap'
 
 
 export class Message extends Component {
@@ -27,13 +26,11 @@ export class Message extends Component {
                     <Preview response = {this.props.response} />
                 
                     <div style = {{paddingTop: '20px' , display: 'flex', justifyContent: 'center'}}>     
-                        <TextField
-                        placeholder = 'Enter your message here'
-                        onChange = {(e) => {this.handleChange(e.target.value , e.target.name)}}
-                        name= {this.props.templateStepId}
-                        id = 'msg'
-                        style = {{backgroundColor: 'white'}}
-                        />
+                        <InputGroup>
+                            <FormControl  placeholder = 'Enter your message here'
+                            onChange = {(e) => {this.handleChange(e.target.value , e.target.name)}}
+                            name= {this.props.templateStepId}/>
+                        </InputGroup>
                     </div>
                 </div>
                 <Navigation {...this.props}></Navigation>
