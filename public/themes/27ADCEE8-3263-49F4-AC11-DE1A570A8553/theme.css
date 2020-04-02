@@ -1,0 +1,8 @@
+
+html {
+    --primaryBackground: Yellow;
+    --primaryTextColor: #1b0707;
+    --primaryButtonColor: red;
+    --primaryButtonTextColor: black;
+    --logo: url("/themes/27ADCEE8-3263-49F4-AC11-DE1A570A8553/MandM.png");
+}

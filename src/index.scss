@@ -9,3 +9,25 @@ body {
   color: var(--primaryTextColor);
 }
 
+.PrimaryButton {
+  background-color: var(--primaryButtonColor);
+  border: none;
+  color:var(--primaryButtonTextColor);
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 30px;
+  font-weight: bold;
+  border-radius: 12px;
+  margin-top: 5em;
+  height: 100px;
+  width: 300px;
+
+}
+
+
+.Splash {
+  text-align: center;
+  background-image: var(--logo);
+}

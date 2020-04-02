@@ -14,17 +14,24 @@ const MainRoute = (props) => {
     };
 
     if (!showSplashScreen) {
-        return ( 
-            <ThemeProvider>
+        return (
+            <ThemeProvider routeData={props.match.params}>
                 <TemplateInstanceProvider routeData={props.match.params}>
                     <Main routeData={props.match.params} />
                 </TemplateInstanceProvider>
             </ThemeProvider>
         );
     }
-    else{
-        return (<ThemeProvider><div style={{textAlign: "center"}}><SplashScreen /> <button className='SplashButton' onClick={handleCloseSplashScreen}>Get Started</button></div></ThemeProvider>);
-    } 
+    else {
+        return (
+            <ThemeProvider routeData={props.match.params}>
+                <div style={{ textAlign: "center" }}>
+                    <SplashScreen />
+                    <button className='PrimaryButton' onClick={handleCloseSplashScreen}>Get Started</button>
+                </div>
+            </ThemeProvider>
+        );
+    }
 }
- 
+
 export default MainRoute;
