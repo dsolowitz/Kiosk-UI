@@ -3,6 +3,7 @@ import Main from './Main';
 import TemplateInstanceProvider from '../contexts/TemplateInstanceContext';
 import SplashScreen from './SplashScreen';
 import ThemeProvider from '../contexts/ThemeContext';
+import Button from 'react-bootstrap/Button';
 
 
 const MainRoute = (props) => {
@@ -27,7 +28,7 @@ const MainRoute = (props) => {
             <ThemeProvider routeData={props.match.params}>
                 <div style={{ textAlign: "center" }}>
                     <SplashScreen />
-                    <button className='PrimaryButton' onClick={handleCloseSplashScreen}>Get Started</button>
+                    <Button variant="primary" size="lg" onClick={handleCloseSplashScreen}>Get Started</Button>
                 </div>
             </ThemeProvider>
         );

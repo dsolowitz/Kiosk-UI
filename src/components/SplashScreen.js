@@ -1,14 +1,21 @@
 import React from 'react';
-import Logo from './../MandM.png';
+
 
 const SplashScreen = () => {
-    return ( 
-    <div className="Splash">
-        <img className="splashLogo" src={Logo} alt="your logo here" />
-        <br/>
-        <span className="SplashText">What Do You Want to Personalize Today?</span>
-    </div>  
+    return (
+        <div className="container splash">
+            <div className="row">
+                <div className="col-sm">
+                    <div className="logo"></div>
+                </div>
+            </div>
+            <div className="row">
+                <div className="col-sm">
+                    <h1 className="splashText">What do you want to personalize today?</h1>
+                </div>
+            </div>
+        </div>
     );
 }
- 
+
 export default SplashScreen;

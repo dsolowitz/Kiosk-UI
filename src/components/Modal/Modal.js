@@ -3,7 +3,6 @@ import {TemplateInstanceContext} from '../../contexts/TemplateInstanceContext';
 import './Modal.scss';
 import PlaceHolderImage from './../../PlaceHolder.JPG';
 import { Redirect } from 'react-router-dom';
-import { Link } from '@material-ui/core';
 
 const Modal = (props) => {
   const {selectedInstance, setSelectedInstance, url} = useContext(TemplateInstanceContext);
