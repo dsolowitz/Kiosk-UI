@@ -1,33 +1,35 @@
 
+html, body {
+  margin: 0;
+  height: 100%;
+  background-color: var(--threeover3-backgroundColor);
+}
 
-//Default Theme
 body {
   margin: 0;
   padding: 0;
-  background-color: var(--primaryBackground);
+  background-image: var(--threeover3-backgroundImage);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   font-family: 'Open Sans', sans-serif;
-  color: var(--primaryTextColor);
-}
-
-.PrimaryButton {
-  background-color: var(--primaryButtonColor);
-  border: none;
-  color:var(--primaryButtonTextColor);
-  padding: 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 30px;
-  font-weight: bold;
-  border-radius: 12px;
-  margin-top: 5em;
-  height: 100px;
-  width: 300px;
-
+  color: var(--threeover3-primaryTextColor);
 }
 
 
-.Splash {
+.splash {
   text-align: center;
-  background-image: var(--logo);
+  padding-bottom: 40px;
+  padding-top: 0px;
+}
+
+.splashText {
+  text-align: center;
+  padding-top: 0px;
+}
+
+.logo {
+  content: var(--threeover3-logo);
+  max-width:100%;
+  max-height:100%;
 }
