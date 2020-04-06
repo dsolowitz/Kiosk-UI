@@ -29,14 +29,14 @@ const Modal = (props) => {
     return ( 
       <React.Fragment>
         <div className="modal-overlay"/>
-        <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
-          <div className="modal">
-            <div className="">
+        <div className="modal d-block" aria-modal aria-hidden tabIndex={-1} role="dialog">
+          <div className="modal-content">
+           
             <img src={PlaceHolderImage} alt={selectedInstance.name} />
             <div className="buttons">
               <button onClick={Deselect}>Go Back</button>
               <button onClick={Personalize}>Personalize</button>
-            </div>
+            
             </div>
           </div>
         </div>
