@@ -9,4 +9,14 @@
     width: 100%;
     vertical-align: top;
   }
+
+  /* For width smaller than 400px: */
+  @media only screen and (max-width: 450px) {
+    img {
+      height: 70px;
+      width: 70px;
+      vertical-align: top;
+    }
+  }
+
 }
