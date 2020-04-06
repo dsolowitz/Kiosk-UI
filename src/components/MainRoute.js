@@ -3,7 +3,7 @@ import Main from './Main';
 import TemplateInstanceProvider from '../contexts/TemplateInstanceContext';
 import SplashScreen from './SplashScreen';
 import ThemeProvider from '../contexts/ThemeContext';
-import {Button} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 
 const MainRoute = (props) => {
