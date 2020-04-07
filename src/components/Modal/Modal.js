@@ -1,8 +1,9 @@
 import React, {useContext, useState } from 'react';
 import {TemplateInstanceContext} from '../../contexts/TemplateInstanceContext';
-import './Modal.scss';
 import PlaceHolderImage from './../../PlaceHolder.JPG';
 import { Redirect } from 'react-router-dom';
+import BModal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
 
 const Modal = (props) => {
   const {selectedInstance, setSelectedInstance, url} = useContext(TemplateInstanceContext);
@@ -27,20 +28,25 @@ const Modal = (props) => {
   }
   else {
     return ( 
-      <React.Fragment>
-        <div className="modal-overlay"/>
-        <div className="modal d-block" aria-modal aria-hidden tabIndex={-1} role="dialog">
-          <div className="modal-content">
-           
-            <img src={PlaceHolderImage} alt={selectedInstance.name} />
-            <div className="buttons">
-              <button onClick={Deselect}>Go Back</button>
-              <button onClick={Personalize}>Personalize</button>
-            
-            </div>
-          </div>
-        </div>
-      </React.Fragment>
+      <BModal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <BModal.Header closeButton>
+        <BModal.Title id="contained-modal-title-vcenter">
+        {selectedInstance.name}
+        </BModal.Title>
+      </BModal.Header>
+      <BModal.Body>
+        <img src={PlaceHolderImage} alt={selectedInstance.name} />
+      </BModal.Body>
+      <BModal.Footer>
+        <Button  onClick={Deselect}>Go Back</Button>
+        <Button onClick={Personalize}>Personalize</Button>
+      </BModal.Footer>
+    </BModal>
     );
   }
 }

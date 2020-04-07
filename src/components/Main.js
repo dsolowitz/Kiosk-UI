@@ -5,7 +5,7 @@ import Modal from './Modal/Modal';
 import Wizard from './Wizard/Wizard';
 
 const Main = () => {
-  const { accountTemplates, isLoading, selectedInstance } = useContext(TemplateInstanceContext);
+  const { accountTemplates, isLoading, selectedInstance,setSelectedInstance } = useContext(TemplateInstanceContext);
   if (isLoading) return (<div>Loading...</div>);
   if (accountTemplates && accountTemplates.length === 1 && accountTemplates[0].templateInstances.length === 1) {
     return (<Wizard templateInstance={accountTemplates[0].templateInstances[0]} />);
@@ -41,7 +41,7 @@ const Main = () => {
                     </div>
                   );
                 })}
-                {selectedInstance && <Modal />}
+                {selectedInstance && <Modal show={selectedInstance} onHide={() => setSelectedInstance(null)} />}
 
 
               </div>
