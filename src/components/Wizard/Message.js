@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
-import Navigation from './Navigation'
-import {Swipeable} from 'react-swipeable'
 import Preview from './Preview'
 import {InputGroup, FormControl} from 'react-bootstrap'
+import {Container, Row, Col, Button} from 'react-bootstrap'
 
 
 export class Message extends Component {
@@ -19,22 +18,33 @@ export class Message extends Component {
     render() {
         
         return (
-            <Swipeable onSwipedLeft = {this.props.nextStep} onSwipedRight = {this.props.previousStep} trackMouse = {true} preventDefaultTouchmoveEvent = {true}> 
-           <div style = {{height: '100vh', overflow: 'hidden'}}>
-               <p style = {{fontSize: '20px', textAlign: 'center', color: 'white'}}>Add Your Message</p>
-                
-                    <Preview response = {this.props.response} />
-                
-                    <div style = {{paddingTop: '20px' , display: 'flex', justifyContent: 'center'}}>     
+            <Container fluid>
+                <Row className='justify-content-md-center' >
+                    <Col  md= 'auto' >
+                        Add Your Message
+                    </Col>
+                </Row>
+                <Row style = {{padding: '10px'}}>
+                    <Col >
+                        <Preview response = {this.props.response} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col style = {{paddingTop: '20px' , justifyContent: 'center'}}>     
                         <InputGroup>
                             <FormControl  placeholder = 'Enter your message here'
                             onChange = {(e) => {this.handleChange(e.target.value , e.target.name)}}
                             name= {this.props.templateStepId}/>
                         </InputGroup>
-                    </div>
-                </div>
-                <Navigation {...this.props}></Navigation>
-            </Swipeable>
+                    </Col>
+                </Row>   
+                <Row>
+                    <Col>
+
+                    </Col>
+                </Row> 
+                </Container>
+                
                     )}
             
 

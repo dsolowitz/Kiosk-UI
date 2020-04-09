@@ -4,6 +4,7 @@ import './App.scss';
 import MainRoute from './components/MainRoute';
 import Wizard from './components/Wizard/Wizard';
 
+
 function App() {
   return (
       <Router>
