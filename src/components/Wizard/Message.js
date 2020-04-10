@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Preview from './Preview'
 import {InputGroup, FormControl} from 'react-bootstrap'
-import {Container, Row, Col, Button} from 'react-bootstrap'
-
+import {Container, Row, Col} from 'react-bootstrap'
+import Navigation from './Navigation'
 
 export class Message extends Component {
 
@@ -40,7 +40,7 @@ export class Message extends Component {
                 </Row>   
                 <Row>
                     <Col>
-
+                        <Navigation {...this.props}/>
                     </Col>
                 </Row> 
                 </Container>

@@ -1,14 +1,14 @@
 import React from 'react';
-import RaisedButton from '@material-ui/core/Button';
+import {Button, Container, Row, Col }from 'react-bootstrap'
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-import { Link , Redirect} from "react-router-dom";
+import { Redirect} from "react-router-dom";
 
 let route = ''
 
 class Navigation extends React.Component {
 
     state = {
-        redirect: false
+        redirect: false ,
     }
 
     handleClick = () => {
@@ -21,19 +21,31 @@ class Navigation extends React.Component {
         if (this.state.redirect) {
             return <Redirect push to={route} />;
           }
+       
         return (
-            <div >
-            {/* { this.props.currentStep > 1 && 
-                    
-                    <RaisedButton onClick={this.props.previousStep}style = {buttonLeft}></RaisedButton>
-                }
-            { this.props.currentStep !== this.props.totalSteps &&  
-                    <RaisedButton onClick={this.props.nextStep} style = {buttonRight}></RaisedButton>  
-                }   */}
-            {   this.props.currentStep > 1 &&
-                    <p> <RaisedButton onClick={this.handleClick} style = {{color: 'white'}}><ThreeSixtyIcon />Start Over</RaisedButton></p>
-                 }
-          </div>
+            <Container >
+                <Row>
+                    <Col>
+                        { this.props.currentStep > 1 && 
+                                
+                                <Button onClick={this.props.previousStep}>Go Back</Button>
+                            }
+                    </Col>  
+                    <Col> 
+                        { this.props.currentStep !== this.props.totalSteps &&  
+                                <Button onClick={this.props.nextStep} >Approve</Button>  
+                            } 
+                    </Col> 
+                   
+                </Row> 
+                <Row>
+                    <Col>
+                       
+                                <p> <Button onClick={this.handleClick} style = {{color: 'white'}}><ThreeSixtyIcon />Start Over</Button></p>
+                            
+                    </Col>
+                </Row>
+          </Container>
         )
     }
 

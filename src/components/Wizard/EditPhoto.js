@@ -1,13 +1,13 @@
 import * as React from "react"
 import {  withStyles ,  MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Navigation from './Navigation'
-import {Swipeable} from 'react-swipeable'
 import ImageEditor from 'react-avatar-editor'
 import Preview from './Preview'
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
 import Slider from '@material-ui/core/Slider';
 import Button from '@material-ui/core/Button';
+import {Container} from 'react-bootstrap'
 
 const muiTheme = createMuiTheme({
   overrides: {
@@ -121,11 +121,9 @@ export class EditPhoto extends React.Component {
   render(){
 
         return (
-         
+         <Container>
             <MuiThemeProvider theme ={muiTheme}> 
-               <Swipeable onSwipedLeft = {this.props.nextStep} onSwipedRight = {this.props.previousStep} trackMouse = {true} preventDefaultTouchmoveEvent = {true}>
                <p style = {{fontSize: '20px', textAlign: 'center', color: 'white'}}>Resize and Position your photo within the square below</p>
-               </Swipeable>
                   <div style = {{ height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                     <div style= {{display: 'flex', position:'absolute', zIndex: '0'}}>
                       <ImageEditor
@@ -154,21 +152,12 @@ export class EditPhoto extends React.Component {
                               defaultValue = {1}
                             /> 
                   </div>
-                  <div style = {{display:'flex', alignItems: 'center', justifyContent: 'space-evenly'}}>
-                      <Button variant="contained"  onClick= {this.props.previousStep}>
-                        Go Back
-                      </Button>   
-                      <Button variant="contained" onClick={this.handleSave} >
-                          Approve
-                      </Button>                 
-                  </div>
-                  <Swipeable onSwipedLeft = {this.props.nextStep} onSwipedRight = {this.props.previousStep} trackMouse = {true} preventDefaultTouchmoveEvent = {true}>
                     <div style= {{display: 'flex', justifyContent: 'center', alignItems: 'center', bottom : '20px', height: '50vh'}}>
                           <Preview response = {this.props.response} />
                         </div>
                    <Navigation {...this.props}></Navigation>  
-                   </Swipeable>           
            </MuiThemeProvider> 
+           </Container>
   );
         }
 }

@@ -71,11 +71,7 @@ return(
                     key={idx + 1}
                 />
                 }
-                if (data.stepTypeId === "991e7b88-192e-49c1-961f-ae667e76f4c3"){
-                    return <Print startOver = {this.props.startOver}
-
-                    key={idx + 1}/>
-                }
+                
             })
             }
         </StepWizard>      

@@ -1,27 +1,46 @@
 import React, { Component } from 'react'
 import Navigation from './Navigation'
-import {Swipeable} from 'react-swipeable'
 import Preview from './Preview'
+import {Container, Row, Col, Button} from 'react-bootstrap'
+import Print from './Print'
+
 
 export class Review extends Component {
 
-    
+    state = {
+        finish : false
+    }
     
     async componentDidMount(){
         this.props.generatePreview()
     }
    
+    handleClick = () => {
+        this.setState({finish : true})
+    }
     render() {
-      
+        
+        if(this.state.finish){
+            return <Print startOver = {this.props.startOver}/>
+        }
         return (
-            <Swipeable onSwipedLeft = {this.props.nextStep} onSwipedRight = {this.props.previousStep} trackMouse = {true} preventDefaultTouchmoveEvent = {true}>
-            <div style = {{height: '100vh', overflow: 'hidden'}}>
+            <Container>
+                <Row>
+                    <Col>
+                        <Preview response = {this.props.response} />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col>
+                        <Navigation {...this.props}></Navigation>
+                    </Col>
+                    <Col>
+                        <Button onClick ={this.handleClick} >Print</Button>
+                    </Col>
+                </Row>
+            </Container>
                    
-            <Preview response = {this.props.response} />
-                    
-                </div>                
-                <Navigation {...this.props}></Navigation>
-            </Swipeable>
+                       
         )
     }
 }
