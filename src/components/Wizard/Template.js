@@ -7,7 +7,10 @@ export class Template extends Component {
     constructor(props) {
         super(props);
     this.state = {
-        location: {},
+        location: {
+            accountId : this.props.accountId,
+            locationId: this.props.locationId
+        },
         image: null,
         preview: {},
         message : {},
@@ -136,6 +139,8 @@ export class Template extends Component {
                             generatePreview = {this.generatePreview}
                             getPrev= {this.getPrev}
                             response = {this.state.response}
+                            templatePost = {this.state.template}
+                            location = {this.state.location}
                         /> 
                      
                  </div>

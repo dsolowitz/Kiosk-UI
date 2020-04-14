@@ -8,7 +8,8 @@ import Print from './Print'
 export class Review extends Component {
 
     state = {
-        finish : false
+        finish : false,
+        postTemplate : this.props.templatePost
     }
     
     async componentDidMount(){
@@ -16,12 +17,33 @@ export class Review extends Component {
     }
    
     handleClick = () => {
-        this.setState({finish : true})
+        let post = this.state.postTemplate
+        post.locationId = this.props.location.locationId
+        post.accountId = this.props.location.accountId
+
+        this.setState({post})
+          
+        const url = 'https://api-dev.3ovr3.io/PrintQueue'
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/'
+
+        fetch(proxyUrl + url, {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.state.postTemplate)
+          })
+          .then(response => response.json())
+        .then(data => this.setState({ response: data, 
+            finish: true
+        }));
     }
+
     render() {
         
         if(this.state.finish){
-            return <Print startOver = {this.props.startOver}/>
+            return <Print printCode = {this.state.response.printQueueCode} startOver = {this.props.startOver}/>
         }
         return (
             <Container>

@@ -52,7 +52,9 @@ const TemplateInstanceProvider = (props) => {
         accountTemplates,
         isLoading,
         selectedInstance,
-        url : props.url
+        url : props.url,
+        locationId : locationId,
+        accountId : accountId
        
     };
 

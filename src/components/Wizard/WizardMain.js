@@ -67,7 +67,8 @@ return(
                     getPreview = {this.props.getPrev}
                     response = {this.props.response}
                     generatePreview = {this.props.generatePreview}
-
+                    templatePost = {this.props.templatePost}
+                    location = {this.props.location}
                     key={idx + 1}
                 />
                 }

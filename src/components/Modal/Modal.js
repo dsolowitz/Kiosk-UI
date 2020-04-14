@@ -6,7 +6,7 @@ import BModal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 
 const Modal = (props) => {
-  const {selectedInstance, setSelectedInstance, url} = useContext(TemplateInstanceContext);
+  const {selectedInstance, setSelectedInstance, url, accountId, locationId} = useContext(TemplateInstanceContext);
   const [personalize, setPersonalize] = useState(false);
   const Deselect = () => {
     setSelectedInstance(null);
@@ -21,7 +21,9 @@ const Modal = (props) => {
               to={{
                 pathname: "/wizard",
                 state: { templateInstance: selectedInstance,
-                          prevPath : url
+                          prevPath : url,
+                          accountId : accountId,
+                          locationId: locationId
                         }
               }}
             />

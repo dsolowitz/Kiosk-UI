@@ -11,7 +11,7 @@ export class Print extends Component {
                 <Row>
                     <Col>
                         Please Bring this number to the Cashier
-                         251223
+                         {this.props.printCode}
                     </Col>
                 </Row>
                 <Navigation {...this.props}/>
