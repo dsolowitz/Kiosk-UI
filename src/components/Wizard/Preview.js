@@ -3,25 +3,17 @@ import React, { Component } from 'react'
 
 export class Preview extends Component {
 
-    
-    render(){
+
+    render() {
         return (
 
-       
-                <div>
-                            <img
-                                style = {{display: 'block',
-                                    marginLeft: 'auto',
-                                    marginRight: 'auto',
-                                    width: '50vw'}}
-                                src={this.props.response}
-                            />
-                            
-                    </div>                
-       
+            <div>
+                <img style={{ width: '100%'}} src={this.props.response} />
+            </div>
+
         )
     }
 
-    }
+}
 
 export default Preview

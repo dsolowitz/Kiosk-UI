@@ -3,6 +3,8 @@ import Preview from './Preview'
 import {InputGroup, FormControl} from 'react-bootstrap'
 import {Container, Row, Col} from 'react-bootstrap'
 import Navigation from './Navigation'
+import StartOver from './StartOver';
+
 
 export class Message extends Component {
 
@@ -18,31 +20,38 @@ export class Message extends Component {
     render() {
         
         return (
-            <Container fluid>
-                <Row className='justify-content-md-center' >
-                    <Col  md= 'auto' >
-                        Add Your Message
-                    </Col>
-                </Row>
-                <Row style = {{padding: '10px'}}>
-                    <Col >
-                        <Preview response = {this.props.response} />
+            <Container>
+                <Row className="text-center">
+                    <Col xs={12}>
+                        <h2>Add Your Message</h2>
                     </Col>
                 </Row>
                 <Row>
-                    <Col style = {{paddingTop: '20px' , justifyContent: 'center'}}>     
+                    <Col xs={2}></Col>
+                    <Col xs={8}>
+                        <Preview response = {this.props.response} />
+                    </Col>
+                    <Col xs={2}></Col>
+                </Row>
+                <Row><Col>&nbsp;</Col></Row>
+                <Row>
+                    <Col>     
                         <InputGroup>
                             <FormControl  placeholder = 'Enter your message here'
-                            onChange = {(e) => {this.handleChange(e.target.value , e.target.name)}}
-                            name= {this.props.templateStepId}/>
+                                onChange = {(e) => {this.handleChange(e.target.value , e.target.name)}}
+                                name= {this.props.templateStepId}/>
                         </InputGroup>
                     </Col>
                 </Row>   
+                <Row><Col>&nbsp;</Col></Row>
                 <Row>
-                    <Col>
+                    <Col xs={12}>
                         <Navigation {...this.props}/>
                     </Col>
                 </Row> 
+
+                <StartOver {...this.props}/>
+                
                 </Container>
                 
                     )}

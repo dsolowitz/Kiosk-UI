@@ -4,6 +4,9 @@ import PlaceHolderImage from './../../PlaceHolder.JPG';
 import { Redirect } from 'react-router-dom';
 import BModal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const Modal = (props) => {
   const {selectedInstance, setSelectedInstance, url, accountId, locationId} = useContext(TemplateInstanceContext);
@@ -30,23 +33,29 @@ const Modal = (props) => {
   }
   else {
     return ( 
-      <BModal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+      <BModal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered >
       <BModal.Header closeButton>
         <BModal.Title id="contained-modal-title-vcenter">
         {selectedInstance.name}
         </BModal.Title>
       </BModal.Header>
       <BModal.Body>
-        <img src={PlaceHolderImage} alt={selectedInstance.name} />
+        <Container>
+          <Row>
+            <Col>
+              <img src={PlaceHolderImage} alt={selectedInstance.name} alt="preview" style={{width:'100%'}} />
+            </Col>
+          </Row>
+        </Container>
+        
       </BModal.Body>
       <BModal.Footer>
-        <Button  onClick={Deselect}>Go Back</Button>
-        <Button onClick={Personalize}>Personalize</Button>
+        <Container>
+          <Row>
+            <Col className="text-left"><Button variant="secondary" onClick={Deselect}>Go Back</Button></Col>
+            <Col className="text-right"><Button variant="primary" onClick={Personalize}>Personalize</Button></Col>
+          </Row>
+        </Container>
       </BModal.Footer>
     </BModal>
     );
