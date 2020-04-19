@@ -11,14 +11,7 @@ import {TemplateInstanceContext} from '../../contexts/TemplateInstanceContext';
 const Slider = ({ children, activeSlide }) => {
   const {selectedInstance, setSelectedInstance} = useContext(TemplateInstanceContext);
   const { width, elementRef } = useSizeElement();
-  const {
-    handlePrev,
-    handleNext,
-    slideProps,
-    containerRef,
-    hasNext,
-    hasPrev
-  } = useSliding(width, React.Children.count(children));
+  const { handlePrev, handleNext, slideProps, containerRef, hasNext, hasPrev } = useSliding(width, React.Children.count(children));
 
   const handleSelect = templateInstance => {
     setSelectedInstance(templateInstance);

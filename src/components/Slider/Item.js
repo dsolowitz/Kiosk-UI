@@ -5,9 +5,17 @@ import './Item.scss'
 import PlaceHolderImage from './../../PlaceHolder.JPG';
 
 const Item = ({ templateInstance }) => (
+
   <SliderContext.Consumer>
     {({ onSelectSlide, currentSlide, elementRef }) => {
       const isActive = currentSlide && currentSlide.templateInstanceId === templateInstance.templateInstanceId;
+
+      let previewImage;
+      if(templateInstance.previewPath && templateInstance.previewPath != ""){
+        previewImage = <img src={templateInstance.previewPath} alt="" />;
+      } else{
+        previewImage = <img src={PlaceHolderImage} alt="" />;
+      }
 
       return (
         <div
@@ -16,11 +24,13 @@ const Item = ({ templateInstance }) => (
             'item--open': isActive,
           })}
           onClick={() => onSelectSlide(templateInstance)}>
-          <img src={PlaceHolderImage} alt="" />
+            
+          {previewImage}
         </div>
       );
     }}
   </SliderContext.Consumer>
+
 );
 
 export default Item;

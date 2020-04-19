@@ -32,6 +32,14 @@ const Modal = (props) => {
             />
   }
   else {
+
+    let previewImage;
+    if(selectedInstance.previewPath && selectedInstance.previewPath != ""){
+      previewImage = <img src={selectedInstance.previewPath} alt={selectedInstance.name} alt="preview" style={{width:'100%'}} />;
+    } else{
+      previewImage = <img src={PlaceHolderImage} alt={selectedInstance.name} alt="preview" style={{width:'100%'}} />;
+    }
+
     return ( 
       <BModal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered >
       <BModal.Header closeButton>
@@ -43,7 +51,7 @@ const Modal = (props) => {
         <Container>
           <Row>
             <Col>
-              <img src={PlaceHolderImage} alt={selectedInstance.name} alt="preview" style={{width:'100%'}} />
+              {previewImage}
             </Col>
           </Row>
         </Container>
