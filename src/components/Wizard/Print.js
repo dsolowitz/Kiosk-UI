@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import Navigation from './Navigation'
 import { Container , Row, Col} from 'react-bootstrap'
-
+import StartOver from './StartOver'
 export class Print extends Component {
     
     render() {
@@ -14,7 +13,7 @@ export class Print extends Component {
                          {this.props.printCode}
                     </Col>
                 </Row>
-                <Navigation {...this.props}/>
+               <StartOver {...this.props}/>               
              </Container>
             
         )

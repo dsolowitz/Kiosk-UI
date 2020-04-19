@@ -9,9 +9,7 @@ export class Camera extends Component {
         super(props);
         this.snapShot = this.snapShot.bind(this)
 
-         this.state = {
-             screenshot: null,
-            }
+        
         
    }
 
@@ -27,7 +25,6 @@ export class Camera extends Component {
 }
 
    
-
       snapShot = (pictureFiles, pictureDataURLs) => {
         this.props.saveImage(...pictureDataURLs)
     }

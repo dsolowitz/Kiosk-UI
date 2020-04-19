@@ -11,24 +11,27 @@ export class Template extends Component {
             accountId : this.props.accountId,
             locationId: this.props.locationId
         },
-        image: null,
         preview: {},
         message : {},
         templateInstances: [],
         steps : [],
         template: {},
         response : '',
-        path: this.props.route
+        path: this.props.route,
+        upload : false,
+        image : ''
     }
 }
-
-  
-
 
     saveImage = (pic) =>{
         this.setState({
             image: pic
         })
+    }
+
+
+    uploadPhoto = () => {
+        this.setState({upload : true})
     }
 
     savePreview = (prev, stepId) =>{
@@ -71,7 +74,6 @@ export class Template extends Component {
     
     startOver = () =>{
         this.setState({
-            image: null,
             preview: null,
             message: {},
             steps: [],
@@ -132,15 +134,17 @@ export class Template extends Component {
                             startOver = {this.startOver}
                             addMsg = {this.addMsg}
                             message = {this.state.message}
-                            image = {this.state.image}
                             preview = {this.state.preview}
                             saveImage = {this.saveImage}
+                            image = {this.state.image}
                             savePreview = {this.savePreview}
                             generatePreview = {this.generatePreview}
                             getPrev= {this.getPrev}
                             response = {this.state.response}
                             templatePost = {this.state.template}
                             location = {this.state.location}
+                            uploadState = {this.state.upload}
+                            setUploadState = {this.uploadPhoto}
                         /> 
                      
                  </div>

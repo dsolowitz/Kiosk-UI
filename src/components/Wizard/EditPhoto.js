@@ -6,8 +6,9 @@ import Preview from './Preview'
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
 import Slider from '@material-ui/core/Slider';
-import Button from '@material-ui/core/Button';
-import {Container} from 'react-bootstrap'
+import ImageUploader from 'react-images-upload';
+import {Container, Row, Col} from 'react-bootstrap'
+import StartOver from './StartOver'
 
 const muiTheme = createMuiTheme({
   overrides: {
@@ -39,11 +40,20 @@ export class EditPhoto extends React.Component {
     rotate: 0,
     preview: null,
     scale: 1.2, 
-    open : false
-   
+    open : false,
   }
 
- 
+    onDrop(pictureFiles, pictureDataURLs) {
+      this.setState({
+          pictures: this.state.pictures.concat(pictureFiles),
+      });
+  }
+
+      snapShot = (pictureFiles, pictureDataURLs) => {
+        
+        this.props.saveImage(...pictureDataURLs)
+        this.props.setUploadState()
+    }
 
   handleSave = data => {
     const img = this.editor.getImageScaledToCanvas().toDataURL()
@@ -119,30 +129,74 @@ export class EditPhoto extends React.Component {
 
 
   render(){
-
+        if(!this.props.uploadState){
         return (
          <Container>
-            <MuiThemeProvider theme ={muiTheme}> 
-               <p style = {{fontSize: '20px', textAlign: 'center', color: 'white'}}>Resize and Position your photo within the square below</p>
-                  <div style = {{ height: '50vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <div style= {{display: 'flex', position:'absolute', zIndex: '0'}}>
-                      <ImageEditor
-                      ref={this.setEditorRef}
-                      width = {200}
-                      height = {200}
-                      image = {this.props.myImage ? this.props.myImage : ' '}
-                      scale={parseFloat(this.state.scale)}
-                      rotate={parseFloat(this.state.rotate)}
-                      border = {50}
-                      onPositionChange={this.handlePositionChange}
-                      className="editor-canvas"
-                          />   
+            <Row className="text-center">
+                    <Col xs={12}>
+                        <h2>Upload a Photo!</h2>
+                    </Col>
+                </Row>
+                <Row>
+                <Col xs={2}></Col>
+                  <Col xs={8}>
+                    <ImageUploader
+                            withIcon={true}
+                            buttonText='Choose images'
+                            onChange={this.snapShot}
+                            imgExtension={['.jpeg', '.gif', '.png', '.gif', '.jpg']}
+                            maxFileSize={5242880}
+                            withPreview = {true}
+                            singleImage = {true}
+                            fileContainerStyle = {{backgroundColor: 'transparent', boxShadow: 'none'}}
+                        />
+                     </Col>
+                     <Col xs={2}></Col>
+                    </Row>
+                  </Container>
+                     ) }
+            if(this.props.uploadState) {
+              return(   
+                <MuiThemeProvider theme ={muiTheme}> 
+                <Container>
+                <Row className="text-center">
+                    <Col xs={12}>
+                        <h2>Edit Your Photo in the Space Below</h2>
+                    </Col>
+                </Row>
+                  <Row>
+                    <Col xs={2}></Col>
+                    <Col xs={8}>
+                        <Preview response = {this.props.response} />
+                    </Col>
+                    <Col xs={2}></Col>
+                </Row>
+                <Row><Col>&nbsp;</Col></Row>
+                <Row>
+                  <Col xs={12}>
+                      <div style = {{ height: '10vh', display: 'flex', justifyContent: 'center'}}>
+                        <div style= {{display: 'flex', position:'absolute', zIndex: '0'}}>
+                          <ImageEditor
+                          ref={this.setEditorRef}
+                          width = {100}
+                          height = {100}
+                          image = {this.props.image ? this.props.image: ' '}
+                          scale={parseFloat(this.state.scale)}
+                          rotate={parseFloat(this.state.rotate)}
+                          border = {35}
+                          onPositionChange={this.handlePositionChange}
+                          className="editor-canvas"
+                              />   
                           <button style = {{zIndex: '1',position: 'absolute', backgroundColor: 'transparent', height: '100%', borderColor: 'transparent'}}onClick={this.rotateLeft}><RotateLeftIcon fontSize = 'large'/></button>
                           <button style = {{right: '0', zIndex: '1',position: 'absolute', backgroundColor: 'transparent', height: '100%', borderColor: 'transparent'}}onClick={this.rotateRight}><RotateRightIcon fontSize = 'large'/></button>
-                    </div>
-                  </div>   
-                  <div style = {{display:'flex', alignItems: 'center', justifyContent: 'center'}}>
-                    <p style = {{fontSize: '12px', textAlign: 'left', color: 'white', paddingRight: '20px'}}>Zoom:</p>
+                        </div>
+                      </div>
+                  </Col>
+                </Row>
+                <Row><Col>&nbsp;</Col></Row>
+                <Row>
+                  <Col xs= {12}>
+                      <p style = {{fontSize: '12px', textAlign: 'left', color: 'white', paddingRight: '20px'}}>Zoom:</p>
                       <Slider
                               name = 'scale'
                               onChange={this.handleScale}
@@ -151,14 +205,21 @@ export class EditPhoto extends React.Component {
                               step = {0.01}
                               defaultValue = {1}
                             /> 
-                  </div>
-                    <div style= {{display: 'flex', justifyContent: 'center', alignItems: 'center', bottom : '20px', height: '50vh'}}>
-                          <Preview response = {this.props.response} />
-                        </div>
-                   <Navigation {...this.props}></Navigation>  
+                      
+                    </Col>
+                  </Row>
+                  <Row><Col>&nbsp;</Col></Row>
+                  <Row>
+                      <Col xs={12}>
+                          <Navigation {...this.props}/>
+                      </Col>
+                  </Row> 
+                  <StartOver {...this.props}/>
+                </Container>
            </MuiThemeProvider> 
-           </Container>
+           
   );
+              }
         }
 }
 

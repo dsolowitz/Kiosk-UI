@@ -3,7 +3,7 @@ import Navigation from './Navigation'
 import Preview from './Preview'
 import {Container, Row, Col, Button} from 'react-bootstrap'
 import Print from './Print'
-
+import StartOver from './StartOver'
 
 export class Review extends Component {
 
@@ -47,19 +47,26 @@ export class Review extends Component {
         }
         return (
             <Container>
-                <Row>
-                    <Col>
-                        <Preview response = {this.props.response} />
+                <Row className="text-center">
+                    <Col xs={12}>
+                        <h2>Review Your Product</h2>
                     </Col>
                 </Row>
+                <Row><Col>&nbsp;</Col></Row>
                 <Row>
-                    <Col>
-                        <Navigation {...this.props}></Navigation>
-                    </Col>
-                    <Col>
-                        <Button onClick ={this.handleClick} >Print</Button>
+                    <Col xs={2}></Col>
+                        <Col xs={8}>
+                            <Preview response = {this.props.response} />
+                        </Col>
+                    <Col xs={2}></Col>
+                </Row>
+                <Row><Col>&nbsp;</Col></Row>
+                <Row>
+                    <Col xs = {12}>
+                        <Navigation print = {this.handleClick} {...this.props}></Navigation>
                     </Col>
                 </Row>
+                <StartOver {...this.props}/>
             </Container>
                    
                        

@@ -26,6 +26,7 @@ export class Message extends Component {
                         <h2>Add Your Message</h2>
                     </Col>
                 </Row>
+                <Row><Col>&nbsp;</Col></Row>
                 <Row>
                     <Col xs={2}></Col>
                     <Col xs={8}>

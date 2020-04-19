@@ -1,7 +1,5 @@
 import React from 'react';
 import { Button, Container, Row, Col } from 'react-bootstrap'
-import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-import { Redirect } from "react-router-dom";
 
 
 class Navigation extends React.Component {
@@ -21,6 +19,10 @@ class Navigation extends React.Component {
                         {this.props.currentStep !== this.props.totalSteps &&
 
                             <Button variant="primary" onClick={this.props.nextStep} >Approve</Button>
+                        }
+                        {this.props.currentStep === this.props.totalSteps &&
+
+                            <Button variant="primary" onClick={this.props.print} >Print</Button>
                         }
                     </Col>
 

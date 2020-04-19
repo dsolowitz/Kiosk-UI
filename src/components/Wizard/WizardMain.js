@@ -4,7 +4,6 @@ import Camera from './Camera'
 import EditPhoto from './EditPhoto'
 import Message from './Message'
 import Review from './Review'
-import Print from './Print'
 import Nav from './NavBar'
 
 export class WizardMain extends Component {
@@ -34,19 +33,18 @@ return(
                
                 
                 }
-                if (data.stepTypeId === "7aa632d5-8423-4ccb-b699-a28f7aeb8481"){
-                    return <Camera
-                    saveImage = {this.props.saveImage}
-                    resetCam = {this.props.image}
-                    startOver = {this.props.startOver}
-                    response = {this.props.response}
-                    generatePreview = {this.props.generatePreview}
-                    key={idx + 1}
-                    />
-                }
+                // if (data.stepTypeId === "7aa632d5-8423-4ccb-b699-a28f7aeb8481"){
+                //     return <Camera
+                //     saveImage = {this.props.saveImage}
+                //     resetCam = {this.props.image}
+                //     startOver = {this.props.startOver}
+                //     response = {this.props.response}
+                //     generatePreview = {this.props.generatePreview}
+                //     key={idx + 1}
+                //     />
+                // }
                 if (data.stepTypeId === "fdf91c9c-94c6-466a-a258-b644605d4ac9"){
                     return <EditPhoto
-                    myImage = {this.props.image}
                     savePreview = {this.props.savePreview}
                     myPrev = {this.props.preview}
                     templateStepId = {data.templateInstanceStepsId}
@@ -55,7 +53,10 @@ return(
                     key={idx + 1}
                     getPreview = {this.props.getPrev}
                     generatePreview = {this.props.generatePreview}
-
+                    uploadState = {this.props.uploadState}
+                    setUploadState = {this.props.setUploadState}
+                    saveImage = {this.props.saveImage}
+                    image = {this.props.image}
                 />
                 }
                 if (data.stepTypeId === "6909319f-2ef4-408e-9db8-913bc54d9466"){
