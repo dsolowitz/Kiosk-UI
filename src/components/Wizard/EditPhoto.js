@@ -140,6 +140,7 @@ export class EditPhoto extends React.Component {
                 <Row>
                 <Col xs={2}></Col>
                   <Col xs={8}>
+                    <div style={{backgroundColor: 'rgba(211, 211, 211, 0.4)'}}>
                     <ImageUploader
                             withIcon={true}
                             buttonText='Choose images'
@@ -150,6 +151,7 @@ export class EditPhoto extends React.Component {
                             singleImage = {true}
                             fileContainerStyle = {{backgroundColor: 'transparent', boxShadow: 'none'}}
                         />
+                        </div>
                      </Col>
                      <Col xs={2}></Col>
                     </Row>
@@ -161,7 +163,7 @@ export class EditPhoto extends React.Component {
                 <Container>
                 <Row className="text-center">
                     <Col xs={12}>
-                        <h2>Edit Your Photo in the Space Below</h2>
+                        <h2>Edit Your Photo</h2>
                     </Col>
                 </Row>
                   <Row>
