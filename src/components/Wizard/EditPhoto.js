@@ -1,4 +1,5 @@
 import * as React from "react"
+import {useState} from 'react';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Navigation from './Navigation'
 import ImageEditor from 'react-avatar-editor'
@@ -9,6 +10,8 @@ import Slider from '@material-ui/core/Slider';
 import ImageUploader from 'react-images-upload';
 import { Container, Row, Col } from 'react-bootstrap'
 import StartOver from './StartOver'
+import RangeSlider from 'react-bootstrap-range-slider';
+import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
 
 const muiTheme = createMuiTheme({
   overrides: {
@@ -41,6 +44,7 @@ export class EditPhoto extends React.Component {
     preview: null,
     scale: 1.2,
     open: false,
+    sliderValue: 0
   }
 
   onDrop(pictureFiles, pictureDataURLs) {
@@ -75,6 +79,7 @@ export class EditPhoto extends React.Component {
   handleScale = (e, newValue) => {
     const scale = parseFloat(newValue)
     this.setState({ scale })
+    this.setState({sliderValue: scale})
   }
 
   handleAllowZoomOut = ({ target: { checked: allowZoomOut } }) => {
@@ -99,7 +104,6 @@ export class EditPhoto extends React.Component {
   setEditorRef = editor => {
     if (editor) this.editor = editor
   }
-
 
   handleXPosition = e => {
     const x = parseFloat(e.target.value)
@@ -203,8 +207,7 @@ export class EditPhoto extends React.Component {
               <Col xs={1} />
               <Col xs={10}>
                 <div>
-                  <p className="text-center align-bottom">Zoom</p>
-                  <Slider name='scale' onChange={this.handleScale} min={1} max={2} step={0.01} defaultValue={1} />
+                  <RangeSlider variant='primary' value={this.state.sliderValue} min={1} max={2} step={0.01} onChange={changeEvent => this.handleScale(null, changeEvent.target.value)} />
                 </div>
                 
               </Col>
