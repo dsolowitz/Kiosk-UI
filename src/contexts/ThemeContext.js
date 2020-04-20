@@ -17,17 +17,20 @@ const ThemeContextProvider = (props) => {
 
                 document.head.appendChild(style);
 
+                console.log("Route Data:");
+                console.log(props.routeData);
+                if ((props.routeData && props.routeData.accountid) || props.accountid ) {
 
-                if (props.routeData && props.routeData.accountid) {
-
+                    var aId = props.accountid ? props.accountid : props.routeData.accountid;
                     // Based on the account id in the context we should switch out to that css file. 
                     // Swap out the random number for the account id guid.
-
+                    console.log(aId);
                     const style = document.createElement("link");
-                    style.href = "../themes/" + props.routeData.accountid + "/theme.css";
+                    style.href = "/themes/" + aId + "/theme.css";
                     style.rel = "stylesheet";
                     style.async = true;
 
+                    console.log(style);
                     document.head.appendChild(style);
                 }
 
