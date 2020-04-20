@@ -33,12 +33,10 @@ const Modal = (props) => {
   }
   else {
 
-    let previewImage;
-    if(selectedInstance.previewPath && selectedInstance.previewPath != ""){
+    let previewImage = <img src={PlaceHolderImage} alt={selectedInstance.name} alt="preview" style={{width:'100%'}} />;
+    if(selectedInstance.previewPath && selectedInstance.previewPath !== "") {
       previewImage = <img src={selectedInstance.previewPath} alt={selectedInstance.name} alt="preview" style={{width:'100%'}} />;
-    } else{
-      previewImage = <img src={PlaceHolderImage} alt={selectedInstance.name} alt="preview" style={{width:'100%'}} />;
-    }
+    } 
 
     return ( 
       <BModal {...props} size="lg" aria-labelledby="contained-modal-title-vcenter" centered >
@@ -60,8 +58,8 @@ const Modal = (props) => {
       <BModal.Footer>
         <Container>
           <Row>
-            <Col className="text-left"><Button variant="secondary" onClick={Deselect}>Go Back</Button></Col>
-            <Col className="text-right"><Button variant="primary" onClick={Personalize}>Personalize</Button></Col>
+            <Col className="text-left"><Button variant="secondary" onClick={Deselect} block>Go Back</Button></Col>
+            <Col className="text-right"><Button variant="primary" onClick={Personalize} block>Personalize</Button></Col>
           </Row>
         </Container>
       </BModal.Footer>

@@ -32,16 +32,15 @@ class StartOver extends React.Component {
 
 
     return (
-        <footer className="fixed-bottom">
             <Container>
-                <Row>
-                    <Col className="text-left" style={{padding:'2rem'}}>
-                        <Button variant="warning" onClick={this.handleClick}><FontAwesomeIcon icon={faUndo} /> Start Over</Button>
+                <Row style={{paddingTop: '2rem'}}>
+                    <Col className="text-left" xs={6} >
+                        <Button variant="warning" onClick={this.handleClick} block><FontAwesomeIcon icon={faUndo} /> Start Over</Button>
                     </Col>
+                    <Col xs={6}></Col>
                 </Row>
             </Container>
          
-        </footer>
     );
     }
 }

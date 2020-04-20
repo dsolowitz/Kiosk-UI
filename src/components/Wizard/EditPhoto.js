@@ -1,5 +1,5 @@
 import * as React from "react"
-import {  withStyles ,  MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Navigation from './Navigation'
 import ImageEditor from 'react-avatar-editor'
 import Preview from './Preview'
@@ -7,7 +7,7 @@ import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
 import Slider from '@material-ui/core/Slider';
 import ImageUploader from 'react-images-upload';
-import {Container, Row, Col} from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import StartOver from './StartOver'
 
 const muiTheme = createMuiTheme({
@@ -19,8 +19,8 @@ const muiTheme = createMuiTheme({
         width: '50%'
       }
     },
-    MuiButton:{
-      containedPrimary : {
+    MuiButton: {
+      containedPrimary: {
         color: 'black',
         backgroundColor: 'white'
       }
@@ -30,30 +30,30 @@ const muiTheme = createMuiTheme({
 
 export class EditPhoto extends React.Component {
 
-  async componentDidMount(){
+  async componentDidMount() {
     this.props.generatePreview()
-}
+  }
 
-  
-  state ={
+
+  state = {
     allowZoomOut: false,
     rotate: 0,
     preview: null,
-    scale: 1.2, 
-    open : false,
+    scale: 1.2,
+    open: false,
   }
 
-    onDrop(pictureFiles, pictureDataURLs) {
-      this.setState({
-          pictures: this.state.pictures.concat(pictureFiles),
-      });
+  onDrop(pictureFiles, pictureDataURLs) {
+    this.setState({
+      pictures: this.state.pictures.concat(pictureFiles),
+    });
   }
 
-      snapShot = (pictureFiles, pictureDataURLs) => {
-        
-        this.props.saveImage(...pictureDataURLs)
-        this.props.setUploadState()
-    }
+  snapShot = (pictureFiles, pictureDataURLs) => {
+
+    this.props.saveImage(...pictureDataURLs)
+    this.props.setUploadState()
+  }
 
   handleSave = data => {
     const img = this.editor.getImageScaledToCanvas().toDataURL()
@@ -68,9 +68,9 @@ export class EditPhoto extends React.Component {
         height: this.state.height,
         borderRadius: this.state.borderRadius,
       }
-    }, () =>  this.props.savePreview(this.state.preview, this.props.templateStepId))
-    }
-  
+    }, () => this.props.savePreview(this.state.preview, this.props.templateStepId))
+  }
+
 
   handleScale = (e, newValue) => {
     const scale = parseFloat(newValue)
@@ -121,108 +121,113 @@ export class EditPhoto extends React.Component {
     this.setState({ height })
   }
 
-  
+
 
   handlePositionChange = position => {
     this.setState({ position })
   }
 
 
-  render(){
-        if(!this.props.uploadState){
-        return (
-         <Container>
+  render() {
+    if (!this.props.uploadState) {
+      return (
+        <Container>
+          <Row className="text-center">
+            <Col xs={12}>
+              <h2>Upload a Photo</h2>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={2}></Col>
+            <Col xs={8}>
+              <ImageUploader
+                withIcon={true}
+                buttonText='Choose image'
+                onChange={this.snapShot}
+                imgExtension={['.jpeg', '.gif', '.png', '.gif', '.jpg']}
+                maxFileSize={5242880}
+                withPreview={true}
+                singleImage={true}
+                fileContainerStyle={{ backgroundColor: 'rgba(211, 211, 211, 0.6)', boxShadow: 'none' }}
+              />
+            </Col>
+            <Col xs={2}></Col>
+          </Row>
+        </Container>
+      )
+    }
+    if (this.props.uploadState) {
+      return (
+        <MuiThemeProvider theme={muiTheme}>
+          <Container>
+
             <Row className="text-center">
-                    <Col xs={12}>
-                        <h2>Upload a Photo!</h2>
-                    </Col>
-                </Row>
-                <Row>
-                <Col xs={2}></Col>
-                  <Col xs={8}>
-                    <ImageUploader
-                            withIcon={true}
-                            buttonText='Choose images'
-                            onChange={this.snapShot}
-                            imgExtension={['.jpeg', '.gif', '.png', '.gif', '.jpg']}
-                            maxFileSize={5242880}
-                            withPreview = {true}
-                            singleImage = {true}
-                            fileContainerStyle = {{backgroundColor: 'rgba(211, 211, 211, 0.4)', boxShadow: 'none'}}
-                        />
-                     </Col>
-                     <Col xs={2}></Col>
-                    </Row>
-                  </Container>
-                     ) }
-            if(this.props.uploadState) {
-              return(   
-                <MuiThemeProvider theme ={muiTheme}> 
-                <Container>
-                <Row className="text-center">
-                    <Col xs={12}>
-                        <h2>Edit Your Photo</h2>
-                    </Col>
-                </Row>
-                  <Row>
-                    <Col xs={2}></Col>
-                    <Col xs={8}>
-                        <Preview response = {this.props.response} />
-                    </Col>
-                    <Col xs={2}></Col>
-                </Row>
-                <Row><Col>&nbsp;</Col></Row>
-                <Row  style = {{height: '200px'}}>
-                  <Col xs={12}>
-                      <div style = {{ height: '10vh', display: 'flex', justifyContent: 'center'}}>
-                        <div style= {{display: 'flex', position:'absolute', zIndex: '0'}}>
-                          <ImageEditor
-                          ref={this.setEditorRef}
-                          width = {130}
-                          height = {130}
-                          image = {this.props.image ? this.props.image: ' '}
-                          scale={parseFloat(this.state.scale)}
-                          rotate={parseFloat(this.state.rotate)}
-                          border = {35}
-                          onPositionChange={this.handlePositionChange}
-                          className="editor-canvas"
-                              />   
-                          <button style = {{zIndex: '1',position: 'absolute', backgroundColor: 'transparent', height: '100%', borderColor: 'transparent'}}onClick={this.rotateLeft}><RotateLeftIcon fontSize = 'large'/></button>
-                          <button style = {{right: '0', zIndex: '1',position: 'absolute', backgroundColor: 'transparent', height: '100%', borderColor: 'transparent'}}onClick={this.rotateRight}><RotateRightIcon fontSize = 'large'/></button>
-                        </div>
-                      </div>
-                  </Col>
-                </Row>
-                <Row> 
-                <Col xs= {1}/>
-                  <Col xs= {10} className = "text-center" >
-                    <p style = {{ color: 'white', display: 'inline-block'}}>Zoom</p>
-                      <Slider
-                              name = 'scale'
-                              onChange={this.handleScale}
-                              min ={1}
-                              max = {2}
-                              step = {0.01}
-                              defaultValue = {1}
-                            /> 
-                      
-                    </Col>
-                  <Col xs= {1}/>
-                </Row>
-                <Row><Col>&nbsp;</Col></Row>
-                <Row>
-                    <Col xs={12}>
-                        <Navigation {...this.props}/>
-                    </Col>
-                </Row> 
-                <StartOver {...this.props}/>
-              </Container>
-          </MuiThemeProvider> 
-          
-  );
-              }
-        }
+              <Col xs={12}>
+                <h2>Edit Your Photo</h2>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col xs={3}></Col>
+              <Col xs={6}>
+                <Preview response={this.props.response} />
+              </Col>
+              <Col xs={3}></Col>
+            </Row>
+
+            <Row><Col>&nbsp;</Col></Row>
+
+            <Row style={{ height: '200px' }}>
+              <Col xs={12}>
+                <div style={{ height: '10vh', display: 'flex', justifyContent: 'center' }}>
+                  <div style={{ display: 'flex', position: 'absolute', zIndex: '0' }}>
+                    <ImageEditor
+                      ref={this.setEditorRef}
+                      width={130}
+                      height={130}
+                      image={this.props.image ? this.props.image : ' '}
+                      scale={parseFloat(this.state.scale)}
+                      rotate={parseFloat(this.state.rotate)}
+                      border={35}
+                      onPositionChange={this.handlePositionChange}
+                      className="editor-canvas"
+                    />
+                    <button style={{ zIndex: '1', position: 'absolute', backgroundColor: 'transparent', height: '100%', borderColor: 'transparent' }} onClick={this.rotateLeft}><RotateLeftIcon fontSize='large' /></button>
+                    <button style={{ right: '0', zIndex: '1', position: 'absolute', backgroundColor: 'transparent', height: '100%', borderColor: 'transparent' }} onClick={this.rotateRight}><RotateRightIcon fontSize='large' /></button>
+                  </div>
+                </div>
+              </Col>
+            </Row>
+
+            <Row>
+              <Col xs={1} />
+              <Col xs={10}>
+                <div>
+                  <p className="text-center align-bottom">Zoom</p>
+                  <Slider name='scale' onChange={this.handleScale} min={1} max={2} step={0.01} defaultValue={1} />
+                </div>
+                
+              </Col>
+              <Col xs={1} />
+            </Row>
+
+            <Row><Col>&nbsp;</Col></Row>
+
+            <Row>
+              <Col xs={12}> <Navigation {...this.props} /> </Col>
+            </Row>
+            
+            <Row>
+              <Col xs={12}><StartOver {...this.props} /></Col>
+            </Row>
+
+          </Container>
+        </MuiThemeProvider>
+
+      );
+    }
+  }
 }
 
-        export default  withStyles({ withTheme: true })(EditPhoto)
+export default withStyles({ withTheme: true })(EditPhoto)
 

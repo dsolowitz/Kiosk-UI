@@ -8,7 +8,7 @@ export class Preview extends Component {
         return (
 
             <div>
-                <img style={{ width: '100%'}} src={this.props.response} />
+                <img style={{ width: '100%'}} src={this.props.response} alt="preview  image"/>
             </div>
 
         )

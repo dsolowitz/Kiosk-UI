@@ -10,8 +10,8 @@ const Item = ({ templateInstance }) => (
     {({ onSelectSlide, currentSlide, elementRef }) => {
       const isActive = currentSlide && currentSlide.templateInstanceId === templateInstance.templateInstanceId;
 
-      let previewImage;
-      if(templateInstance.previewPath && templateInstance.previewPath != ""){
+      var previewImage;
+      if(templateInstance.previewPath && templateInstance.previewPath !== ""){
         previewImage = <img src={templateInstance.previewPath} alt="" />;
       } else{
         previewImage = <img src={PlaceHolderImage} alt="" />;
