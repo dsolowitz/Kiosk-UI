@@ -140,7 +140,6 @@ export class EditPhoto extends React.Component {
                 <Row>
                 <Col xs={2}></Col>
                   <Col xs={8}>
-                    <div style={{backgroundColor: 'rgba(211, 211, 211, 0.4)'}}>
                     <ImageUploader
                             withIcon={true}
                             buttonText='Choose images'
@@ -149,9 +148,8 @@ export class EditPhoto extends React.Component {
                             maxFileSize={5242880}
                             withPreview = {true}
                             singleImage = {true}
-                            fileContainerStyle = {{backgroundColor: 'transparent', boxShadow: 'none'}}
+                            fileContainerStyle = {{backgroundColor: 'rgba(211, 211, 211, 0.4)', boxShadow: 'none'}}
                         />
-                        </div>
                      </Col>
                      <Col xs={2}></Col>
                     </Row>
@@ -174,14 +172,14 @@ export class EditPhoto extends React.Component {
                     <Col xs={2}></Col>
                 </Row>
                 <Row><Col>&nbsp;</Col></Row>
-                <Row>
+                <Row  style = {{height: '200px'}}>
                   <Col xs={12}>
                       <div style = {{ height: '10vh', display: 'flex', justifyContent: 'center'}}>
                         <div style= {{display: 'flex', position:'absolute', zIndex: '0'}}>
                           <ImageEditor
                           ref={this.setEditorRef}
-                          width = {100}
-                          height = {100}
+                          width = {130}
+                          height = {130}
                           image = {this.props.image ? this.props.image: ' '}
                           scale={parseFloat(this.state.scale)}
                           rotate={parseFloat(this.state.rotate)}
@@ -195,10 +193,10 @@ export class EditPhoto extends React.Component {
                       </div>
                   </Col>
                 </Row>
-                <Row><Col>&nbsp;</Col></Row>
-                <Row>
-                  <Col xs= {12}>
-                      <p style = {{fontSize: '12px', textAlign: 'left', color: 'white', paddingRight: '20px'}}>Zoom:</p>
+                <Row> 
+                <Col xs= {1}/>
+                  <Col xs= {10} className = "text-center" >
+                    <p style = {{ color: 'white', display: 'inline-block'}}>Zoom</p>
                       <Slider
                               name = 'scale'
                               onChange={this.handleScale}
@@ -209,17 +207,18 @@ export class EditPhoto extends React.Component {
                             /> 
                       
                     </Col>
-                  </Row>
-                  <Row><Col>&nbsp;</Col></Row>
-                  <Row>
-                      <Col xs={12}>
-                          <Navigation {...this.props}/>
-                      </Col>
-                  </Row> 
-                  <StartOver {...this.props}/>
-                </Container>
-           </MuiThemeProvider> 
-           
+                  <Col xs= {1}/>
+                </Row>
+                <Row><Col>&nbsp;</Col></Row>
+                <Row>
+                    <Col xs={12}>
+                        <Navigation {...this.props}/>
+                    </Col>
+                </Row> 
+                <StartOver {...this.props}/>
+              </Container>
+          </MuiThemeProvider> 
+          
   );
               }
         }
