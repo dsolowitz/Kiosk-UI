@@ -1,14 +1,12 @@
 import * as React from "react"
-import {useState} from 'react';
 import { withStyles, MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import Navigation from './Navigation'
 import ImageEditor from 'react-avatar-editor'
 import Preview from './Preview'
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import RotateRightIcon from '@material-ui/icons/RotateRight';
-import Slider from '@material-ui/core/Slider';
 import ImageUploader from 'react-images-upload';
-import { Container, Row, Col } from 'react-bootstrap'
+import { Button , Container, Row, Col } from 'react-bootstrap'
 import StartOver from './StartOver'
 import RangeSlider from 'react-bootstrap-range-slider';
 import 'react-bootstrap-range-slider/dist/react-bootstrap-range-slider.css';
@@ -51,6 +49,10 @@ export class EditPhoto extends React.Component {
     this.setState({
       pictures: this.state.pictures.concat(pictureFiles),
     });
+  }
+
+  changePhoto = () =>{
+    this.props.setUploadState()
   }
 
   snapShot = (pictureFiles, pictureDataURLs) => {
@@ -203,19 +205,22 @@ export class EditPhoto extends React.Component {
               </Col>
             </Row>
 
-            <Row>
-              <Col xs={1} />
-              <Col xs={10}>
-                <div>
-                  <RangeSlider variant='primary' value={this.state.sliderValue} min={1} max={2} step={0.01} onChange={changeEvent => this.handleScale(null, changeEvent.target.value)} />
-                </div>
-                
+            <Row >
+              <Col xs={2} />
+              <Col xs={8} style = {{display: 'inline-flex', justifyContent: 'center'}} >
+                  <p style = {{color : 'white'}}>Zoom: </p>
+                  <p>&nbsp;</p>
+                  <RangeSlider size = 'sm' variant='primary' value={this.state.sliderValue} min={1} max={2} step={0.01} onChange={changeEvent => this.handleScale(null, changeEvent.target.value)} />
               </Col>
-              <Col xs={1} />
+              <Col xs={8} />
             </Row>
 
             <Row><Col>&nbsp;</Col></Row>
-
+            <Row>
+              <Col xs ={6} className="text-left"><Button variant="primary" onClick={this.changePhoto} block >Change Photo</Button></Col>
+              <Col xs = {6} className="text-right"><Button variant="primary" onClick={this.handleSave} block >Save Image</Button></Col>
+            </Row>
+            <Row><Col>&nbsp;</Col></Row>
             <Row>
               <Col xs={12}> <Navigation {...this.props} /> </Col>
             </Row>

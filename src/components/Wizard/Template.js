@@ -31,7 +31,12 @@ export class Template extends Component {
 
 
     uploadPhoto = () => {
-        this.setState({upload : true})
+        if(!this.state.upload){
+            this.setState({upload : true})
+        }
+        if(this.state.upload){
+            this.setState({upload:false})
+        }
     }
 
     savePreview = (prev, stepId) =>{
